@@ -10,7 +10,7 @@ namespace API_SOAP_licenses.Core
 
         public VersionItem GetNewestVersion()
         {
-            API_LicenseEntities db = new API_LicenseEntities();
+            var db = new API_LicenseEntities();
 
             var version = db.versions.OrderByDescending(p => p.ver_id).FirstOrDefault();
 

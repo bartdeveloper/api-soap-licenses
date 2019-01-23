@@ -120,6 +120,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LicensesDatabase.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Tools\SanitizeInput.cs" />
     <Compile Include="XProgramService.svc.cs">
       <DependentUpon>XProgramService.svc</DependentUpon>
     </Compile>
