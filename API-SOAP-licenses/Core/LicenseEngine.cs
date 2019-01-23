@@ -13,7 +13,7 @@ namespace API_SOAP_licenses.Core
         {
             var db = new API_LicenseEntities();
 
-            nip = SanitizeInput.sanitizeNIP(nip);
+            nip = SanitizeInput.SanitizeNIP(nip);
 
             bool isValidLicense = (from license in db.licenses
                                      join company in db.companies on license.lic_cmpid equals company.cmp_id
