@@ -11,14 +11,11 @@ namespace API_SOAP_licenses
 {
 
     [ServiceContract]
-    public interface ILicensingXProgramService
+    public interface ILicense
     {
 
         [OperationContract]
         bool CheckValidityLicenseByNip(string nip);
-
-        [OperationContract]
-        VersionItem GetNewestVersion();
 
     }
 

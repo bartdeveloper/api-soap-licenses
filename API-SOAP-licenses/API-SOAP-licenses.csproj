@@ -92,13 +92,16 @@
       <DependentUpon>LicensesDatabase.edmx</DependentUpon>
       <LastGenOutput>LicensesDatabase.cs</LastGenOutput>
     </Content>
-    <Content Include="LicensingXProgramService.svc" />
+    <Content Include="XProgramService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="company.cs">
       <DependentUpon>LicensesDatabase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Core\LicenseEngine.cs" />
+    <Compile Include="Core\VersionEngine.cs" />
+    <Compile Include="Interfaces\IVersion.cs" />
     <Compile Include="license.cs">
       <DependentUpon>LicensesDatabase.tt</DependentUpon>
     </Compile>
@@ -117,10 +120,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LicensesDatabase.edmx</DependentUpon>
     </Compile>
-    <Compile Include="LicensingXProgramService.svc.cs">
-      <DependentUpon>LicensingXProgramService.svc</DependentUpon>
+    <Compile Include="XProgramService.svc.cs">
+      <DependentUpon>XProgramService.svc</DependentUpon>
     </Compile>
-    <Compile Include="ILicensingXProgramService.cs" />
+    <Compile Include="Interfaces\ILicense.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="version.cs">
       <DependentUpon>LicensesDatabase.tt</DependentUpon>
@@ -165,7 +168,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50801</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50801/</IISUrl>
+          <IISUrl>http://localhost:60214/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
