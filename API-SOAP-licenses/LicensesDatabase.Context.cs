@@ -9,11 +9,12 @@
 
 namespace API_SOAP_licenses
 {
+    using API_SOAP_licenses.Repository;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class API_LicenseEntities : DbContext
+    public partial class API_LicenseEntities : DbContext, IRepositoryContext
     {
         public API_LicenseEntities()
             : base("name=API_LicenseEntities")
@@ -25,8 +26,8 @@ namespace API_SOAP_licenses
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<company> companies { get; set; }
-        public virtual DbSet<license> licenses { get; set; }
-        public virtual DbSet<version> versions { get; set; }
+        public virtual IDbSet<company> companies { get; set; }
+        public virtual IDbSet<license> licenses { get; set; }
+        public virtual IDbSet<version> versions { get; set; }
     }
 }

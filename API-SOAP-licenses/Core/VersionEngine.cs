@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API_SOAP_licenses.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,12 +8,21 @@ namespace API_SOAP_licenses.Core
 {
     public class VersionEngine
     {
+        private readonly IRepositoryContext repoContext;
+
+        public VersionEngine()
+        {
+            this.repoContext = new API_LicenseEntities();
+        }
+
+        public VersionEngine(IRepositoryContext repoContext)
+        {
+            this.repoContext = repoContext;
+        }
 
         public VersionItem GetNewestVersion()
         {
-            var db = new API_LicenseEntities();
-
-            var version = db.versions.OrderByDescending(p => p.ver_id).FirstOrDefault();
+            var version = repoContext.versions.OrderByDescending(p => p.ver_id).FirstOrDefault();
 
             if (version != null)
             {
