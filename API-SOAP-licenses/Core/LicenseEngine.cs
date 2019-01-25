@@ -24,7 +24,7 @@ namespace API_SOAP_licenses.Core
 
         public bool CheckValidityLicenseByNip(string nip)
         {
-            nip = SanitizeInput.SanitizeNIP(nip);
+            nip = SanitizeInput.RemoveDashAndSpace(nip);
 
             bool isValidLicense = (from license in repoContext.licenses
                                      join company in repoContext.companies on license.lic_cmpid equals company.cmp_id

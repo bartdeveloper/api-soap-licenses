@@ -7,6 +7,6 @@ namespace API_SOAP_licenses.Tools
 {
     public class SanitizeInput
     {
-        public static string SanitizeNIP(string nip) => nip.Replace("-", "").Replace(" ", "");
+        public static string RemoveDashAndSpace(string input) => input.Replace("-", "").Replace(" ", "");
     }
 }
