@@ -9,9 +9,9 @@ namespace API_SOAP_licenses.Repository
 {
     public interface IRepositoryContext
     {
-        IDbSet<company> companies { get; set; }
-        IDbSet<license> licenses { get; set; }
-        IDbSet<version> versions { get; set; }
+        IDbSet<company> Companies { get; set; }
+        IDbSet<license> Licenses { get; set; }
+        IDbSet<version> Versions { get; set; }
     }
    
 }

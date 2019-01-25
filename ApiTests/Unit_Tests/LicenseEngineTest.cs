@@ -43,8 +43,8 @@ namespace ApiTests.Unit_Tests
             companyDbSet.GetEnumerator().Returns(companies.GetEnumerator());
 
             IRepositoryContext repositoryContext = Substitute.For<IRepositoryContext>();
-            repositoryContext.licenses.Returns(licenseDbSet);
-            repositoryContext.companies.Returns(companyDbSet);
+            repositoryContext.Licenses.Returns(licenseDbSet);
+            repositoryContext.Companies.Returns(companyDbSet);
 
             string nip = "222 22 22 222";
 
@@ -87,8 +87,8 @@ namespace ApiTests.Unit_Tests
             companyDbSet.GetEnumerator().Returns(companies.GetEnumerator());
 
             IRepositoryContext repositoryContext = Substitute.For<IRepositoryContext>();
-            repositoryContext.licenses.Returns(licenseDbSet);
-            repositoryContext.companies.Returns(companyDbSet);
+            repositoryContext.Licenses.Returns(licenseDbSet);
+            repositoryContext.Companies.Returns(companyDbSet);
 
             string nip = "333 22 22 222";
 

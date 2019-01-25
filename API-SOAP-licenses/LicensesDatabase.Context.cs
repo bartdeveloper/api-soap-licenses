@@ -26,8 +26,8 @@ namespace API_SOAP_licenses
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual IDbSet<company> companies { get; set; }
-        public virtual IDbSet<license> licenses { get; set; }
-        public virtual IDbSet<version> versions { get; set; }
+        public virtual IDbSet<company> Companies { get; set; }
+        public virtual IDbSet<license> Licenses { get; set; }
+        public virtual IDbSet<version> Versions { get; set; }
     }
 }

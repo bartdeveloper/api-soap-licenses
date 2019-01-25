@@ -26,8 +26,8 @@ namespace API_SOAP_licenses.Core
         {
             nip = SanitizeInput.RemoveDashAndSpace(nip);
 
-            bool isValidLicense = (from license in repoContext.licenses
-                                     join company in repoContext.companies on license.lic_cmpid equals company.cmp_id
+            bool isValidLicense = (from license in repoContext.Licenses
+                                     join company in repoContext.Companies on license.lic_cmpid equals company.cmp_id
                                      where company.cmp_nip.Equals(nip)
                                      select new { license, company }).Any();
 

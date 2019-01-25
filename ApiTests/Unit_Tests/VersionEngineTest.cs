@@ -33,7 +33,7 @@ namespace ApiTests.Unit_Tests
             versionDbSet.GetEnumerator().Returns(versions.GetEnumerator());
 
             IRepositoryContext repositoryContext = Substitute.For<IRepositoryContext>();
-            repositoryContext.versions.Returns(versionDbSet);
+            repositoryContext.Versions.Returns(versionDbSet);
 
 
             var versionEngine = new VersionEngine(repositoryContext);

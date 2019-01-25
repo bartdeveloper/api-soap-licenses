@@ -22,7 +22,7 @@ namespace API_SOAP_licenses.Core
 
         public VersionItem GetNewestVersion()
         {
-            var version = repoContext.versions.OrderByDescending(p => p.ver_id).FirstOrDefault();
+            var version = repoContext.Versions.OrderByDescending(p => p.ver_id).FirstOrDefault();
 
             if (version != null)
             {
