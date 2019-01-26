@@ -14,59 +14,50 @@ namespace ApiTests.Unit_Tests
 {
     class LicenseEngineTest
     {
+
         [Test]
         public void shouldReturnValidLicense()
         {
-
-            IQueryable<license> licenses =
-                new List<license>
-                {
-                    new license { lic_id = 1, lic_cmpid = 1, lic_valid = true}
-                }.AsQueryable();
-
-            IDbSet<license> licenseDbSet = Substitute.For<IDbSet<license>>();
-            licenseDbSet.Provider.Returns(licenses.Provider);
-            licenseDbSet.Expression.Returns(licenses.Expression);
-            licenseDbSet.ElementType.Returns(licenses.ElementType);
-            licenseDbSet.GetEnumerator().Returns(licenses.GetEnumerator());
-
-            IQueryable<company> companies =
-                new List<company>
-                {
-                    new company { cmp_id = 1, cmp_name = "Company", cmp_nip = "2222222222"}
-                }.AsQueryable();
-
-            IDbSet<company> companyDbSet = Substitute.For<IDbSet<company>>();
-            companyDbSet.Provider.Returns(companies.Provider);
-            companyDbSet.Expression.Returns(companies.Expression);
-            companyDbSet.ElementType.Returns(companies.ElementType);
-            companyDbSet.GetEnumerator().Returns(companies.GetEnumerator());
+            IDbSet<license> licenseDbSet = getLicenseDbSet();
+            IDbSet<company> companyDbSet = getCompanyDbSet();
 
             IRepositoryContext repositoryContext = Substitute.For<IRepositoryContext>();
             repositoryContext.Licenses.Returns(licenseDbSet);
             repositoryContext.Companies.Returns(companyDbSet);
 
             string nip = "222 22 22 222";
-
-
             var licenseEngine = new LicenseEngine(repositoryContext);
+
 
             bool isValidLicense = licenseEngine.CheckValidityLicenseByNip(nip);
 
 
             Assert.IsTrue(isValidLicense);
-
         }
 
         [Test]
         public void shouldReturnInvalidLicense()
         {
+            IDbSet<license> licenseDbSet = getLicenseDbSet();
+            IDbSet<company> companyDbSet = getCompanyDbSet();
 
-            IQueryable<license> licenses =
-                new List<license>
-                {
-                    new license { lic_id = 1, lic_cmpid = 1, lic_valid = true}
-                }.AsQueryable();
+            IRepositoryContext repositoryContext = Substitute.For<IRepositoryContext>();
+            repositoryContext.Licenses.Returns(licenseDbSet);
+            repositoryContext.Companies.Returns(companyDbSet);
+
+            string nip = "333 22 22 222";
+            var licenseEngine = new LicenseEngine(repositoryContext);
+
+
+            bool isValidLicense = licenseEngine.CheckValidityLicenseByNip(nip);
+
+
+            Assert.IsFalse(isValidLicense); ;
+        }
+
+        IDbSet<license> getLicenseDbSet()
+        {
+            IQueryable<license> licenses = getLicenses();
 
             IDbSet<license> licenseDbSet = Substitute.For<IDbSet<license>>();
             licenseDbSet.Provider.Returns(licenses.Provider);
@@ -74,11 +65,23 @@ namespace ApiTests.Unit_Tests
             licenseDbSet.ElementType.Returns(licenses.ElementType);
             licenseDbSet.GetEnumerator().Returns(licenses.GetEnumerator());
 
-            IQueryable<company> companies =
-                new List<company>
+            return licenseDbSet;
+        }
+
+        IQueryable<license> getLicenses()
+        {
+            IQueryable<license> licenses =
+                new List<license>
                 {
-                    new company { cmp_id = 1, cmp_name = "Company", cmp_nip = "2222222222"}
+                    new license { lic_id = 1, lic_cmpid = 1, lic_valid = true}
                 }.AsQueryable();
+
+            return licenses;
+        }
+
+        IDbSet<company> getCompanyDbSet()
+        {
+            IQueryable<company> companies = getCompanies();
 
             IDbSet<company> companyDbSet = Substitute.For<IDbSet<company>>();
             companyDbSet.Provider.Returns(companies.Provider);
@@ -86,20 +89,18 @@ namespace ApiTests.Unit_Tests
             companyDbSet.ElementType.Returns(companies.ElementType);
             companyDbSet.GetEnumerator().Returns(companies.GetEnumerator());
 
-            IRepositoryContext repositoryContext = Substitute.For<IRepositoryContext>();
-            repositoryContext.Licenses.Returns(licenseDbSet);
-            repositoryContext.Companies.Returns(companyDbSet);
-
-            string nip = "333 22 22 222";
-
-
-            var licenseEngine = new LicenseEngine(repositoryContext);
-
-            bool isValidLicense = licenseEngine.CheckValidityLicenseByNip(nip);
-
-
-            Assert.IsFalse(isValidLicense);
-
+            return companyDbSet;
         }
+        IQueryable<company> getCompanies()
+        {
+            IQueryable<company> companies =
+                new List<company>
+                {
+                    new company { cmp_id = 1, cmp_name = "Company", cmp_nip = "2222222222"}
+                }.AsQueryable();
+
+            return companies;
+        }
+
     }
 }
